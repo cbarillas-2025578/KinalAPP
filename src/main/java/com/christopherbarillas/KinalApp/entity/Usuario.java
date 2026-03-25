@@ -9,47 +9,69 @@ import jakarta.persistence.Table;
 @Table(name = "usuarios")
 public class Usuario {
     @Id
-    @Column(name = "codigo_venta")
-    private String CodigoVenta;
+    @Column(name = "codigo_usuario")
+    private String CodigoUsuario;
     @Column
-    private String FechaVenta;
+    private String Username;
     @Column
-    private String Total;
+    private String Password;
+    @Column
+    private String Email;
+    @Column
+    private String Rol;
     @Column
     private int estado;
 
     public Usuario() {
     }
 
-    public Usuario(String codigoVenta, String fechaVenta, String total, int estado) {
-        CodigoVenta = codigoVenta;
-        FechaVenta = fechaVenta;
-        Total = total;
+    public Usuario(String codigoUsuario, String username, String password, String email, String rol, int estado) {
+        CodigoUsuario = codigoUsuario;
+        Username = username;
+        Password = password;
+        Email = email;
+        Rol = rol;
         this.estado = estado;
     }
 
-    public String getCodigoVenta() {
-        return CodigoVenta;
+    public String getCodigoUsuario() {
+        return CodigoUsuario;
     }
 
-    public void setCodigoVenta(String codigoVenta) {
-        CodigoVenta = codigoVenta;
+    public String setCodigoUsuario(Usuario codigoUsuario) {
+        return CodigoUsuario;
     }
 
-    public String getFechaVenta() {
-        return FechaVenta;
+    public String getUsername() {
+        return Username;
     }
 
-    public void setFechaVenta(String fechaVenta) {
-        FechaVenta = fechaVenta;
+    public void setUsername(String username) {
+        Username = username;
     }
 
-    public String getTotal() {
-        return Total;
+    public String getPassword() {
+        return Password;
     }
 
-    public void setTotal(String total) {
-        Total = total;
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getRol() {
+        return Rol;
+    }
+
+    public void setRol(String rol) {
+        Rol = rol;
     }
 
     public int getEstado() {
