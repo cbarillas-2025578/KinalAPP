@@ -114,13 +114,13 @@ public class DetalleVentaService implements IDetalleVentaService {
     @Override
     @Transactional(readOnly = true)
     public List<DetalleVenta> listarPorVenta(Integer codigoVenta) {
-        return detalleVentaRepository.findByVentasCodigoVenta(codigoVenta);
+        return detalleVentaRepository.findByVenta_CodigoVenta(codigoVenta);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<DetalleVenta> listarPorProducto(Integer codigoProducto) {
-        return detalleVentaRepository.findByProductosCodigoProducto(codigoProducto);
+        return detalleVentaRepository.findByProducto_CodigoProducto(codigoProducto);
     }
 
     //Metodo Privado (solo puede utilizarse dentro de la clase)
