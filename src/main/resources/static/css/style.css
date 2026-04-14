@@ -1,0 +1,109 @@
+:root {
+    --primary: #2c3e50;
+    --secondary: #34495e;
+    --accent: #3498db;
+    --success: #27ae60;
+    --danger: #e74c3c;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light);
+    margin: 0;
+    display: flex;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 240px;
+    background: var(--dark);
+    height: 100vh;
+    position: fixed;
+    color: white;
+}
+
+.sidebar h2 {
+    text-align: center;
+    padding: 20px 0;
+    background: rgba(0,0,0,0.2);
+    margin: 0;
+}
+
+.sidebar a {
+    display: block;
+    color: #bdc3c7;
+    padding: 15px 25px;
+    text-decoration: none;
+    transition: 0.3s;
+    border-left: 4px solid transparent;
+}
+
+.sidebar a:hover {
+    background: var(--secondary);
+    color: white;
+    border-left: 4px solid var(--accent);
+}
+
+/* Main Content Area */
+.main-content {
+    margin-left: 240px;
+    padding: 30px;
+    width: calc(100% - 240px);
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+h1 { color: var(--primary); margin-top: 0; }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: var(--primary);
+    color: white;
+    text-align: left;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover { background-color: #f9f9f9; }
+
+/* Buttons & Forms */
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-add { background: var(--success); color: white; margin-bottom: 20px; }
+.btn-del { background: var(--danger); color: white; font-weight: bold; }
+.btn-save { background: var(--accent); color: white; width: 100%; padding: 12px; font-size: 16px; }
+
+.form-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--secondary); }
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
