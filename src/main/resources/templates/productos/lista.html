@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KinalApp - Lista de Productos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="~{layout/nav :: menu}"></div>
+
+<main class="main-content">
+    <div class="container">
+        <header class="content-header">
+            <h1>Gestión de Productos</h1>
+            <a th:href="@{/productos/nuevo}" class="btn btn-primary">
+                <span>+</span> Nuevo Producto
+            </a>
+        </header>
+
+        <section class="table-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre del Producto</th>
+                    <th>Precio (Q)</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.codigoProducto}">PROD-01</td>
+                    <td th:text="${producto.nombreProducto}">Nombre Ejemplo</td>
