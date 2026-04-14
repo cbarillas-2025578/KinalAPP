@@ -21,3 +21,4 @@ Antes de ejecutar la aplicación, debe de tener instalado:
 5. Configurar la base de datos en MySQL
 6. Ejecutar la aplicación en IntelliJ
 7. Probar los endpoints en Postman
+documentacion
