@@ -4,11 +4,12 @@ import com.christopherbarillas.KinalApp.entity.DetalleVenta;
 import com.christopherbarillas.KinalApp.service.IDetalleVentaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 //@RestController = @Controller + @ResponseBody
 @RequestMapping("/detalles-venta")
 //Todas las rutas de este controlador deben empezar con /detalles-venta
