@@ -9,7 +9,7 @@ public class DetalleVenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_detalle_venta")
-    private Integer codigoDetalleVenta;
+    private long codigoDetalleVenta;
 
     @Column
     private int cantidad;
@@ -28,11 +28,9 @@ public class DetalleVenta {
     @JoinColumn(name = "Productos_codigo_producto", referencedColumnName = "codigo_producto")
     private Producto producto;
 
-    public DetalleVenta() {
+    public DetalleVenta() {}
 
-    }
-
-    public DetalleVenta(Integer codigoDetalleVenta, int cantidad, BigDecimal precioUnitario,
+    public DetalleVenta(long codigoDetalleVenta, int cantidad, BigDecimal precioUnitario,
                         BigDecimal subtotal, Venta venta, Producto producto) {
         this.codigoDetalleVenta = codigoDetalleVenta;
         this.cantidad = cantidad;
@@ -42,51 +40,17 @@ public class DetalleVenta {
         this.producto = producto;
     }
 
-    public Integer getCodigoDetalleVenta() {
-        return codigoDetalleVenta;
-    }
 
-    public void setCodigoDetalleVenta(Integer codigoDetalleVenta) {
-        this.codigoDetalleVenta = codigoDetalleVenta;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public BigDecimal getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
-
-    public BigDecimal getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(BigDecimal subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public Venta getVenta() {
-        return venta;
-    }
-
-    public void setVenta(Venta venta) {
-        this.venta = venta;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
+    public long getCodigoDetalleVenta() { return codigoDetalleVenta; }
+    public void setCodigoDetalleVenta(long codigoDetalleVenta) { this.codigoDetalleVenta = codigoDetalleVenta; }
+    public int getCantidad() { return cantidad; }
+    public void setCantidad(int cantidad) { this.cantidad = cantidad; }
+    public BigDecimal getPrecioUnitario() { return precioUnitario; }
+    public void setPrecioUnitario(BigDecimal precioUnitario) { this.precioUnitario = precioUnitario; }
+    public BigDecimal getSubtotal() { return subtotal; }
+    public void setSubtotal(BigDecimal subtotal) { this.subtotal = subtotal; }
+    public Venta getVenta() { return venta; }
+    public void setVenta(Venta venta) { this.venta = venta; }
+    public Producto getProducto() { return producto; }
+    public void setProducto(Producto producto) { this.producto = producto; }
 }
