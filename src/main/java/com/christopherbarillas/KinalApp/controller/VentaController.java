@@ -5,12 +5,13 @@ import com.christopherbarillas.KinalApp.service.IVentaService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 
-@RestController
+@Controller
 //@RestController = @Controller + @ResponseBody
 @RequestMapping("/ventas")
 //Todas las rutas de este controlador deben empezar con /ventas
