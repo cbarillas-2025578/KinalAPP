@@ -80,7 +80,7 @@ public class UsuarioService implements IUsuarioService{
                 //Si no existe, se lanza una excepcion(error controlado)
             }
 
-            usuario.setCodigoUsuario(usuario);
+            usuario.setCodigoUsuario(codigo);
             validarUsuario(usuario);
 
             return usuarioRepository.save(usuario);
