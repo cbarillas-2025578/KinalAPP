@@ -35,4 +35,11 @@ public class DetalleVentaService implements IDetalleVentaService {
         // Aquí es donde el parámetro 'id' debe ser Long para que el Repositorio lo acepte
         detalleVentaRepository.deleteById(id);
     }
+
+    @Override
+    public List<DetalleVenta> listarPorVenta(Integer codigoVenta) {
+        return detalleVentaRepository.findAll().stream()
+                .filter(d -> d.getVenta() != null && d.getVenta().getCodigoVenta().equals(codigoVenta))
+                .toList();
+    }
 }
