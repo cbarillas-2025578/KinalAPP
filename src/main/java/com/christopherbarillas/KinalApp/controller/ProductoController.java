@@ -46,4 +46,12 @@ public class ProductoController {
         productoService.eliminar(codigo);
         return "redirect:/productos";
     }
+
+    @GetMapping("/editar/{codigo}")
+    public String editar(@PathVariable String codigo, Model model) {
+        Producto producto = productoService.buscarPorCodigoProducto(codigo)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+        model.addAttribute("producto", producto);
+        return "productos/formulario";
+    }
 }
