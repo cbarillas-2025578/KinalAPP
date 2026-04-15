@@ -2,39 +2,74 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Clientes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinalApp - Lista de Clientes</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+
+<button class="menu-toggle">☰</button>
+
 <div th:replace="~{layout/nav :: menu}"></div>
-<div class="main-content">
-    <div class="card">
-        <h1>Clientes Registrados</h1>
-        <a th:href="@{/clientes/nuevo}" class="btn btn-add">+ Nuevo Cliente</a>
-        <table>
-            <thead>
-            <tr>
-                <th>DPI</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="c : ${clientes}">
-                <td th:text="${c.DPICliente}"></td>
-                <td th:text="${c.nombreCliente}"></td>
-                <td th:text="${c.apellidoCliente}"></td>
-                <td th:text="${c.estado == 1 ? 'Activo' : 'Inactivo'}"></td>
-                <td>
-                    <a th:href="@{/clientes/eliminar/{id}(id=${c.DPICliente})}"
-                       class="btn btn-del" onclick="return confirm('¿Eliminar?')">X</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+
+<main class="main-content">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>👥 Clientes Registrados</h1>
+                <a th:href="@{/clientes/nuevo}" class="btn btn-primary">+ Nuevo Cliente</a>
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>DPI</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Dirección</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${clientes.isEmpty()}">
+                        <td colspan="6" style="text-align: center;">No hay clientes registrados</td>
+                    </tr>
+                    <tr th:each="cliente : ${clientes}">
+                        <td th:text="${cliente.DPICliente}"></td>
+                        <td th:text="${cliente.nombreCliente}"></td>
+                        <td th:text="${cliente.apellidoCliente}"></td>
+                        <td th:text="${cliente.direccion}"></td>
+                        <td>
+                            <span th:if="${cliente.estado == 1}" class="badge active">Activo</span>
+                            <span th:if="${cliente.estado == 0}" class="badge inactive">Inactivo</span>
+                        </td>
+                        <td class="actions">
+                            <a th:href="@{/clientes/editar/{id}(id=${cliente.DPICliente})}" class="btn-edit" data-tooltip="Editar">✏️</a>
+                            <a th:href="@{/clientes/eliminar/{id}(id=${cliente.DPICliente})}"
+                               class="btn-delete"
+                               data-tooltip="Eliminar"
+                               onclick="return confirm('¿Estás seguro de eliminar este cliente?')">🗑️</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</div>
+</main>
+
+<script>
+    // Menú hamburguesa
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('open');
+        });
+    }
+</script>
+
 </body>
 </html>
