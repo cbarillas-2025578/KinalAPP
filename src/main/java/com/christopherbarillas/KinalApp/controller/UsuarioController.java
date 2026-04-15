@@ -39,4 +39,13 @@ public class UsuarioController {
         usuarioService.eliminar(id);
         return "redirect:/usuarios";
     }
+
+    @GetMapping("/editar/{codigo}")
+    public String editar(@PathVariable String codigo, Model model) {
+        Usuario usuario = usuarioService.buscarPorCodigo(codigo)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        model.addAttribute("usuario", usuario);
+        return "usuarios/formulario";
+    }
+
 }
