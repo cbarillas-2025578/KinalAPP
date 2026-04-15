@@ -38,8 +38,8 @@ public class Usuario {
         return CodigoUsuario;
     }
 
-    public String setCodigoUsuario(Usuario codigoUsuario) {
-        return CodigoUsuario;
+    public void setCodigoUsuario(String codigoUsuario) {
+        CodigoUsuario = codigoUsuario;
     }
 
     public String getUsername() {
