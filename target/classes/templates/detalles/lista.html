@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KinalApp - Detalle de Ventas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="~{layout/nav :: menu}"></div>
+
+<main class="main-content">
+    <div class="container">
+        <header class="content-header">
+            <h1>Detalle de Ventas</h1>
+            <a th:href="@{/detalles/nuevo}" class="btn btn-primary">+ Nuevo Detalle</a>
+        </header>
+
+        <section class="table-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th>Código Detalle</th>
+                    <th>Venta</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="detalle : ${detalles}">
+                    <td th:text="${detalle.codigoDetalleVenta}">1</td>
+                    <td th:text="${detalle.venta.codigoVenta}">1</td>
+                    <td th:text="${detalle.producto.nombreProducto}">Producto</td>
+                    <td th:text="${detalle.cantidad}">5</td>
+                    <td th:text="'Q' + ${detalle.precioUnitario}">Q10.00</td>
+                    <td th:text="'Q' + ${detalle.subtotal}">Q50.00</td>
+                    <td class="actions">
+                        <a th:href="@{/detalles/eliminar/{id}(id=${detalle.codigoDetalleVenta})}"
+                           class="btn-delete"
+                           onclick="return confirm('¿Eliminar detalle?')">🗑️</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</main>
+
+</body>
+</html>
