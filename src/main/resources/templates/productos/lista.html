@@ -34,3 +34,24 @@
                 <tr th:each="producto : ${productos}">
                     <td th:text="${producto.codigoProducto}">PROD-01</td>
                     <td th:text="${producto.nombreProducto}">Nombre Ejemplo</td>
+                    <td th:text="${producto.precio}">15.50</td>
+                    <td th:text="${producto.stock}">10</td>
+                    <td>
+                        <span th:if="${producto.estado == 1}" class="badge active">Activo</span>
+                        <span th:if="${producto.estado == 0}" class="badge inactive">Inactivo</span>
+                    </td>
+                    <td class="actions">
+                        <a th:href="@{/productos/editar/{id}(id=${producto.codigoProducto})}" class="btn-edit">✏️</a>
+                        <a th:href="@{/productos/eliminar/{id}(id=${producto.codigoProducto})}"
+                           class="btn-delete"
+                           onclick="return confirm('¿Eliminar producto?')">🗑️</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</main>
+
+</body>
+</html>
