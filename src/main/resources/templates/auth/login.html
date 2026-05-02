@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KinalApp - Iniciar Sesión</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body { display:flex; justify-content:center; align-items:center; min-height:100vh; background:#1a1a2e; margin:0; }
+        .login-card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .login-card h2 { color:#e94560; text-align:center; margin-bottom:0.3rem; font-size:1.8rem; }
+        .login-card p.subtitle { color:#aaa; text-align:center; margin-bottom:1.8rem; font-size:0.88rem; }
+        .form-group { margin-bottom:1.1rem; }
+        .form-group label { display:block; color:#ccc; margin-bottom:0.35rem; font-size:0.88rem; }
+        .form-group input {
+            width:100%; padding:0.75rem 1rem; border-radius:8px;
+            border:1px solid #0f3460; background:#0f3460; color:#fff;
+            font-size:0.95rem; box-sizing:border-box; transition:border-color 0.2s;
+        }
+        .form-group input:focus { outline:none; border-color:#e94560; }
+        .btn-login {
+            width:100%; padding:0.85rem; background:#e94560; color:white;
+            border:none; border-radius:8px; font-size:1rem; cursor:pointer;
+            transition:background 0.2s; margin-top:0.3rem;
+        }
+        .btn-login:hover { background:#c73652; }
+        .alert { padding:0.75rem 1rem; border-radius:8px; margin-bottom:1rem; font-size:0.88rem; }
+        .alert-danger { background:rgba(233,69,96,0.15); color:#e94560; border:1px solid rgba(233,69,96,0.4); }
+        .alert-success { background:rgba(40,167,69,0.15); color:#28a745; border:1px solid rgba(40,167,69,0.4); }
+        .alert-info { background:rgba(79,195,247,0.15); color:#4fc3f7; border:1px solid rgba(79,195,247,0.4); }
+        .logo { text-align:center; font-size:3rem; margin-bottom:0.4rem; }
+        .divider { text-align:center; color:#555; margin:1.2rem 0 0.5rem; font-size:0.85rem; }
+        .link-register {
+            display:block; text-align:center; color:#4fc3f7; text-decoration:none;
+            font-size:0.9rem; padding:0.5rem; border-radius:8px;
+            border:1px solid rgba(79,195,247,0.4); transition:background 0.2s;
+        }
+        .link-register:hover { background:rgba(79,195,247,0.1); }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo">🏫</div>
+        <h2>KinalApp</h2>
+        <p class="subtitle">Ingresa tus credenciales para continuar</p>
+
+        <!-- Mensajes -->
+        <div th:if="${param.error}" class="alert alert-danger">
+            ❌ Usuario o contraseña incorrectos.
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success">
+            ✅ Sesión cerrada correctamente.
+        </div>
+        <div th:if="${exito}" class="alert alert-info">
+            🎉 <span th:text="${exito}">Cuenta creada</span>
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="username">👤 Usuario</label>
+                <input type="text" id="username" name="username"
+                       placeholder="Ingresa tu usuario" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password">🔒 Contraseña</label>
+                <input type="password" id="password" name="password"
+                       placeholder="Ingresa tu contraseña" required>
+            </div>
+            <button type="submit" class="btn-login">Iniciar Sesión →</button>
+        </form>
+
+        <div class="divider">¿No tienes cuenta?</div>
+        <a th:href="@{/registro}" class="link-register">📝 Crear nueva cuenta</a>
+    </div>
+</body>
+</html>
