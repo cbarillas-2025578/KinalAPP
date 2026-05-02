@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - KinalApp</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{layout/nav :: menu}"></div>
+
+<main class="main-content">
+    <div class="page-header">
+        <h1>🏠 Dashboard</h1>
+        <p>Bienvenido, <strong sec:authentication="name">Usuario</strong>
+           <span sec:authorize="hasRole('ADMIN')" style="background:#e94560;color:white;padding:2px 8px;border-radius:4px;font-size:0.8rem;margin-left:6px;">ADMIN</span>
+           <span sec:authorize="hasRole('USUARIO')" style="background:#0f3460;color:white;padding:2px 8px;border-radius:4px;font-size:0.8rem;margin-left:6px;">USUARIO</span>
+        </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem;margin-top:2rem;">
+        <!-- Acceso para ADMIN y USUARIO -->
+        <a th:href="@{/clientes}" style="text-decoration:none;">
+            <div class="card" style="text-align:center;padding:2rem;">
+                <div style="font-size:2.5rem;">👥</div>
+                <h3 style="color:#e94560;margin:0.5rem 0;">Clientes</h3>
+                <p style="color:#aaa;font-size:0.85rem;">Gestión de clientes</p>
+            </div>
+        </a>
+        <a th:href="@{/productos}" style="text-decoration:none;">
+            <div class="card" style="text-align:center;padding:2rem;">
+                <div style="font-size:2.5rem;">📦</div>
+                <h3 style="color:#e94560;margin:0.5rem 0;">Productos</h3>
+                <p style="color:#aaa;font-size:0.85rem;">Catálogo de productos</p>
+            </div>
+        </a>
+        <a th:href="@{/ventas}" style="text-decoration:none;">
+            <div class="card" style="text-align:center;padding:2rem;">
+                <div style="font-size:2.5rem;">💰</div>
+                <h3 style="color:#e94560;margin:0.5rem 0;">Ventas</h3>
+                <p style="color:#aaa;font-size:0.85rem;">Registro de ventas</p>
+            </div>
+        </a>
+        <a th:href="@{/detalles}" style="text-decoration:none;">
+            <div class="card" style="text-align:center;padding:2rem;">
+                <div style="font-size:2.5rem;">📋</div>
+                <h3 style="color:#e94560;margin:0.5rem 0;">Detalle Ventas</h3>
+                <p style="color:#aaa;font-size:0.85rem;">Detalles de ventas</p>
+            </div>
+        </a>
+        <!-- Solo ADMIN ve la gestión de usuarios -->
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/usuarios}" style="text-decoration:none;">
+            <div class="card" style="text-align:center;padding:2rem;border:1px solid #e94560;">
+                <div style="font-size:2.5rem;">👤</div>
+                <h3 style="color:#e94560;margin:0.5rem 0;">Usuarios</h3>
+                <p style="color:#aaa;font-size:0.85rem;">Solo Administrador</p>
+            </div>
+        </a>
+    </div>
+</main>
+</body>
+</html>
