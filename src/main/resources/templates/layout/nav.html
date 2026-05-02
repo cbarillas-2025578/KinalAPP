@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head><meta charset="UTF-8"></head>
 <body>
-
 <div th:fragment="menu" class="sidebar">
     <div class="sidebar-header">
         <h3>KinalApp</h3>
@@ -13,37 +11,44 @@
     <nav class="sidebar-nav">
         <ul>
             <li>
-                <a th:href="@{/clientes}">
-                    <span>👥</span> Clientes
-                </a>
+                <a th:href="@{/dashboard}"><span>🏠</span> Dashboard</a>
             </li>
-            <li>
-                <a th:href="@{/productos}">
-                    <span>📦</span> Productos
-                </a>
+            <!-- ADMIN y USUARIO -->
+            <li sec:authorize="hasAnyRole('ADMIN','USUARIO')">
+                <a th:href="@{/clientes}"><span>👥</span> Clientes</a>
             </li>
-            <li>
-                <a th:href="@{/usuarios}">
-                    <span>👤</span> Usuarios
-                </a>
+            <li sec:authorize="hasAnyRole('ADMIN','USUARIO')">
+                <a th:href="@{/productos}"><span>📦</span> Productos</a>
             </li>
-            <li>
-                <a th:href="@{/ventas}">
-                    <span>💰</span> Ventas
-                </a>
+            <li sec:authorize="hasAnyRole('ADMIN','USUARIO')">
+                <a th:href="@{/ventas}"><span>💰</span> Ventas</a>
             </li>
-            <li>
-                <a th:href="@{/detalles}">
-                    <span>📋</span> Detalle Ventas
-                </a>
+            <li sec:authorize="hasAnyRole('ADMIN','USUARIO')">
+                <a th:href="@{/detalles}"><span>📋</span> Detalle Ventas</a>
+            </li>
+            <!-- Solo ADMIN -->
+            <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/usuarios}"><span>👤</span> Usuarios</a>
             </li>
         </ul>
     </nav>
 
     <div class="sidebar-footer">
-        <p>v1.0 - 2026</p>
+        <!-- Info del usuario logueado -->
+        <div sec:authorize="isAuthenticated()" style="margin-bottom:0.75rem;font-size:0.85rem;color:#aaa;">
+            <span>👤 </span><span sec:authentication="name">Usuario</span><br>
+            <span sec:authorize="hasRole('ADMIN')" style="color:#e94560;font-size:0.75rem;">● ADMINISTRADOR</span>
+            <span sec:authorize="hasRole('USUARIO')" style="color:#4fc3f7;font-size:0.75rem;">● USUARIO</span>
+        </div>
+        <!-- Botón de cerrar sesión -->
+        <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+            <button type="submit" style="width:100%;background:#e94560;color:white;border:none;
+                    padding:0.5rem;border-radius:6px;cursor:pointer;font-size:0.85rem;">
+                🚪 Cerrar Sesión
+            </button>
+        </form>
+        <p style="font-size:0.75rem;color:#555;margin-top:0.5rem;">v1.0 - 2026</p>
     </div>
 </div>
-
 </body>
 </html>
