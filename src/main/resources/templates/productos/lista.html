@@ -1,57 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>KinalApp - Lista de Productos</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-
 <div th:replace="~{layout/nav :: menu}"></div>
-
 <main class="main-content">
     <div class="container">
-        <header class="content-header">
-            <h1>Gestión de Productos</h1>
-            <a th:href="@{/productos/nuevo}" class="btn btn-primary">
-                <span>+</span> Nuevo Producto
-            </a>
-        </header>
-
-        <section class="table-responsive">
-            <table>
-                <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre del Producto</th>
-                    <th>Precio (Q)</th>
-                    <th>Stock</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="producto : ${productos}">
-                    <td th:text="${producto.codigoProducto}">PROD-01</td>
-                    <td th:text="${producto.nombreProducto}">Nombre Ejemplo</td>
-                    <td th:text="${producto.precio}">15.50</td>
-                    <td th:text="${producto.stock}">10</td>
-                    <td>
-                        <span th:if="${producto.estado == 1}" class="badge active">Activo</span>
-                        <span th:if="${producto.estado == 0}" class="badge inactive">Inactivo</span>
-                    </td>
-                    <td class="actions">
-                        <a th:href="@{/productos/editar/{id}(id=${producto.codigoProducto})}" class="btn-edit">✏️</a>
-                        <a th:href="@{/productos/eliminar/{id}(id=${producto.codigoProducto})}"
-                           class="btn-delete"
-                           onclick="return confirm('¿Eliminar producto?')">🗑️</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="card">
+            <div class="card-header">
+                <h1>📦 Productos</h1>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/productos/nuevo}" class="btn btn-primary">+ Nuevo Producto</a>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${productos.isEmpty()}">
+                        <td colspan="7" style="text-align:center;">No hay productos registrados</td>
+                    </tr>
+                    <tr th:each="producto : ${productos}">
+                        <td th:text="${producto.codigoProducto}"></td>
+                        <td th:text="${producto.nombreProducto}"></td>
+                        <td th:text="'Q' + ${producto.precio}"></td>
+                        <td th:text="${producto.stock}"></td>
+                        <td>
+                            <span th:if="${producto.estado == 1}" class="badge active">Activo</span>
+                            <span th:if="${producto.estado == 0}" class="badge inactive">Inactivo</span>
+                        </td>
+                        <td class="actions">
+                            <a sec:authorize="hasRole('ADMIN')"
+                               th:href="@{/productos/editar/{id}(id=${producto.codigoProducto})}" class="btn-edit">✏️</a>
+                            <a sec:authorize="hasRole('ADMIN')"
+                               th:href="@{/productos/eliminar/{id}(id=${producto.codigoProducto})}"
+                               class="btn-delete"
+                               onclick="return confirm('¿Eliminar este producto?')">🗑️</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
-
 </body>
 </html>

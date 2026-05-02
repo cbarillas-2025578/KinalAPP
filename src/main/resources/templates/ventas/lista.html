@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>KinalApp - Lista de Ventas</title>
+    <title>KinalApp - Lista de Usuarios</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
@@ -12,9 +12,9 @@
 <main class="main-content">
     <div class="container">
         <header class="content-header">
-            <h1>Gestión de Ventas</h1>
-            <a th:href="@{/ventas/nueva}" class="btn btn-primary">
-                <span>+</span> Nueva Venta
+            <h1>Gestión de Usuarios</h1>
+            <a th:href="@{/usuarios/nuevo}" class="btn btn-primary">
+                <span>+</span> Nuevo Usuario
             </a>
         </header>
 
@@ -22,28 +22,28 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Código Venta</th>
-                    <th>Fecha</th>
-                    <th>Cliente</th>
-                    <th>Usuario</th>
-                    <th>Total</th>
+                    <th>Código</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Rol</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="venta : ${ventas}">
-                    <td th:text="${venta.codigoVenta}">1</td>
-                    <td th:text="${#dates.format(venta.fechaVenta, 'dd/MM/yyyy')}">01/01/2026</td>
-                    <td th:text="${venta.cliente.nombreCliente} + ' ' + ${venta.cliente.apellidoCliente}">Cliente</td>
-                    <td th:text="${venta.usuario.username}">vendedor</td>
-                    <td th:text="'Q' + ${venta.total}">Q100.00</td>
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.codigoUsuario}">USER-001</td>
+                    <td th:text="${usuario.username}">jperez</td>
+                    <td th:text="${usuario.email}">jperez@mail.com</td>
+                    <td th:text="${usuario.rol}">ADMIN</td>
                     <td>
-                        <span th:if="${venta.estado == 1}" class="badge active">Activa</span>
-                        <span th:if="${venta.estado == 0}" class="badge inactive">Anulada</span>
+                        <span th:if="${usuario.estado == 1}" class="badge active">Activo</span>
+                        <span th:if="${usuario.estado == 0}" class="badge inactive">Inactivo</span>
                     </td>
                     <td class="actions">
-                        <a th:href="@{/ventas/detalle/{id}(id=${venta.codigoVenta})}" class="btn-view">👁️</a>
+                        <a th:href="@{/usuarios/eliminar/{id}(id=${usuario.codigoUsuario})}"
+                           class="btn-delete"
+                           onclick="return confirm('¿Eliminar usuario?')">🗑️</a>
                     </td>
                 </tr>
                 </tbody>
