@@ -2,12 +2,14 @@ package com.christopherbarillas.KinalApp.controller;
 
 import com.christopherbarillas.KinalApp.entity.Usuario;
 import com.christopherbarillas.KinalApp.service.IUsuarioService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/usuarios")
+@PreAuthorize("hasRole('ADMIN')")  // Toda la sección es solo para ADMIN
 public class UsuarioController {
 
     private final IUsuarioService usuarioService;
@@ -19,7 +21,7 @@ public class UsuarioController {
     @GetMapping
     public String listar(Model model) {
         model.addAttribute("usuarios", usuarioService.listarTodos());
-        return "usuarios/lista"; // templates/usuarios/lista.html
+        return "usuarios/lista";
     }
 
     @GetMapping("/nuevo")
@@ -47,5 +49,4 @@ public class UsuarioController {
         model.addAttribute("usuario", usuario);
         return "usuarios/formulario";
     }
-
 }
