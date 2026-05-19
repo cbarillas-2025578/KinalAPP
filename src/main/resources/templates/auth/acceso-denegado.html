@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso Denegado - KinalApp</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .denied-container { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:60vh; text-align:center; }
+        .denied-icon { font-size:5rem; margin-bottom:1rem; }
+        .denied-container h2 { color:#e94560; font-size:2rem; }
+        .denied-container p { color:#aaa; margin:0.5rem 0 2rem; }
+        .btn-back { background:#e94560; color:white; padding:0.75rem 2rem; border-radius:8px; text-decoration:none; }
+    </style>
+</head>
+<body>
+<div th:replace="~{layout/nav :: menu}"></div>
+<main class="main-content">
+    <div class="denied-container">
+        <div class="denied-icon">🚫</div>
+        <h2>Acceso Denegado</h2>
+        <p>No tienes permisos para acceder a esta sección.</p>
+        <p sec:authentication="name">Tu usuario: </p>
+        <a th:href="@{/dashboard}" class="btn-back">← Volver al Dashboard</a>
+    </div>
+</main>
+</body>
+</html>
