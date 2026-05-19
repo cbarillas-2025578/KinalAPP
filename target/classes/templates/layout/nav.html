@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<div th:fragment="menu" class="sidebar">
+    <div class="sidebar-header">
+        <h3>KinalApp</h3>
+    </div>
+
+    <nav class="sidebar-nav">
+        <ul>
+            <li>
+                <a th:href="@{/clientes}">
+                    <span>👥</span> Clientes
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/productos}">
+                    <span>📦</span> Productos
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/usuarios}">
+                    <span>👤</span> Usuarios
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/ventas}">
+                    <span>💰</span> Ventas
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/detalles}">
+                    <span>📋</span> Detalle Ventas
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+        <p>v1.0 - 2026</p>
+    </div>
+</div>
+
+</body>
+</html>

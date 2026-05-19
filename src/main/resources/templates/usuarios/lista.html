@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KinalApp - Lista de Usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="~{layout/nav :: menu}"></div>
+
+<main class="main-content">
+    <div class="container">
+        <header class="content-header">
+            <h1>Gestión de Usuarios</h1>
+            <a th:href="@{/usuarios/nuevo}" class="btn btn-primary">
+                <span>+</span> Nuevo Usuario
+            </a>
+        </header>
+
+        <section class="table-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.codigoUsuario}">USER-001</td>
+                    <td th:text="${usuario.username}">jperez</td>
+                    <td th:text="${usuario.email}">jperez@mail.com</td>
+                    <td th:text="${usuario.rol}">ADMIN</td>
+                    <td>
+                        <span th:if="${usuario.estado == 1}" class="badge active">Activo</span>
+                        <span th:if="${usuario.estado == 0}" class="badge inactive">Inactivo</span>
+                    </td>
+                    <td class="actions">
+                        <a th:href="@{/usuarios/eliminar/{id}(id=${usuario.codigoUsuario})}"
+                           class="btn-delete"
+                           onclick="return confirm('¿Eliminar usuario?')">🗑️</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</main>
+
+</body>
+</html>
