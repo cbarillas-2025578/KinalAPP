@@ -9,4 +9,6 @@ public interface IDetalleVentaService {
     DetalleVenta guardar(DetalleVenta detalle);
     Optional<DetalleVenta> buscarPorId(Long id); // Cambiar a Long si decía Integer
     void eliminar(Long id); // Cambiar a Long si decía Integer
+
+    List<DetalleVenta> listarPorVenta(Integer codigoVenta);
 }
