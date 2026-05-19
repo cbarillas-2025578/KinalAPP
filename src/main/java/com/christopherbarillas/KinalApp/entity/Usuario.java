@@ -81,4 +81,7 @@ public class Usuario {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
+    public void setCodigoUsuario(Usuario usuario) {
+    }
 }
