@@ -1,55 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Formulario Usuario - KinalApp</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div th:replace="~{layout/nav :: menu}"></div>
 <main class="main-content">
-    <div class="page-header">
-        <h1>👤 <span th:text="${usuario.codigoUsuario != null && !usuario.codigoUsuario.isEmpty()} ? 'Editar Usuario' : 'Nuevo Usuario'">Formulario Usuario</span></h1>
-    </div>
     <div class="card">
-        <form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="post">
             <div class="form-group">
-                <label>Código:</label>
-                <input type="text" th:field="*{codigoUsuario}" class="form-control" required
-                       th:readonly="${usuario.codigoUsuario != null && !usuario.codigoUsuario.isEmpty()}">
             </div>
             <div class="form-group">
-                <label>Username:</label>
-                <input type="text" th:field="*{username}" class="form-control" required>
             </div>
             <div class="form-group">
-                <label>Contraseña: <small style="color:#aaa;">(dejar vacío para no cambiar)</small></label>
-                <input type="password" th:field="*{password}" class="form-control"
-                       placeholder="Nueva contraseña">
             </div>
             <div class="form-group">
-                <label>Email:</label>
-                <input type="email" th:field="*{email}" class="form-control">
             </div>
             <div class="form-group">
-                <label>Rol:</label>
-                <select th:field="*{rol}" class="form-control" required>
-                    <option value="">-- Seleccionar Rol --</option>
-                    <option value="ADMIN">ADMIN</option>
-                    <option value="USUARIO">USUARIO</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>Estado:</label>
-                <select th:field="*{estado}" class="form-control">
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
             </div>
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">💾 Guardar</button>
-                <a th:href="@{/usuarios}" class="btn btn-secondary">✖ Cancelar</a>
             </div>
         </form>
     </div>
