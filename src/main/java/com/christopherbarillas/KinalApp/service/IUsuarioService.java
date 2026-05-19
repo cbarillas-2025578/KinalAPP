@@ -15,4 +15,3 @@ public interface IUsuarioService {
     List<Usuario> listarPorActivo();
     boolean existePorUsername(String username);
 }
-

@@ -62,11 +62,8 @@ public class UsuarioService implements IUsuarioService {
             existente.setPassword(passwordEncoder.encode(usuario.getPassword()));
         }
 
-            usuario.setCodigoUsuario(usuario);
-            validarUsuario(usuario);
-
-            return usuarioRepository.save(usuario);
-        }
+        return usuarioRepository.save(existente);
+    }
 
     @Override
     public void eliminar(String codigo) {

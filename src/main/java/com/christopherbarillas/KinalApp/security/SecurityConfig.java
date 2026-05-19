@@ -29,18 +29,17 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                // Recursos públicos
+
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .requestMatchers("/login", "/registro", "/acceso-denegado").permitAll()
 
-                // Solo ADMIN puede gestionar usuarios
+
                 .requestMatchers("/usuarios/**").hasRole("ADMIN")
 
                 // ADMIN y USUARIO pueden ver clientes, productos, ventas, detalles
                 .requestMatchers("/clientes/**", "/productos/**",
                                  "/ventas/**", "/detalles/**").hasAnyRole("ADMIN", "USUARIO")
 
-                // Cualquier otra ruta requiere autenticación
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
