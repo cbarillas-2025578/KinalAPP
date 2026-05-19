@@ -1,5 +1,5 @@
 # KinalApp
-La aplicación elaborada simula un sistema de ventas de artículos
+Sistema integral de gestión de ventas desarrollado con Spring Boot y Thymeleaf para la gestión de clientes, productos, ventas y usuarios.
 
 ## Tecnologías Utilizadas
 * *Java 17*
@@ -20,5 +20,5 @@ Antes de ejecutar la aplicación, debe de tener instalado:
 4. Abrir el programa en IntelliJ IDEA
 5. Configurar la base de datos en MySQL
 6. Ejecutar la aplicación en IntelliJ
-7. Probar los endpoints en Postman
+
 documentacion
