@@ -27,8 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("Usuario inactivo: " + username);
         }
 
-        // El rol en BD se guarda como "ADMIN" o "USUARIO"
-        // Spring Security espera el prefijo "ROLE_"
+
         String role = "ROLE_" + usuario.getRol().toUpperCase();
 
         return new org.springframework.security.core.userdetails.User(
