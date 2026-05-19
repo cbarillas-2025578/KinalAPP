@@ -32,7 +32,7 @@
                 <tbody>
                 <tr th:each="detalle : ${detalles}">
                     <td th:text="${detalle.codigoDetalleVenta}">1</td>
-                    <td th:text="${detalle.venta.codigoVenta}">1</td>
+                    <td th:text="${detalle.venta?.codigoVenta}">Código Venta</td>
                     <td th:text="${detalle.producto.nombreProducto}">Producto</td>
                     <td th:text="${detalle.cantidad}">5</td>
                     <td th:text="'Q' + ${detalle.precioUnitario}">Q10.00</td>
