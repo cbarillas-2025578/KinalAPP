@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <title>KinalApp - Lista de Ventas</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
@@ -11,22 +12,48 @@
 <main class="main-content">
     <div class="container">
         <header class="content-header">
+            <h1>💰 Gestión de Ventas</h1>
+            <a th:href="@{/ventas/nueva}" class="btn btn-primary">
+                <span>+</span> Nueva Venta
             </a>
         </header>
 
         <section class="table-responsive">
-            <table>
+            <table class="table">
                 <thead>
                 <tr>
+                    <th>Código Venta</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Cliente</th>
+                    <th>Usuario</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
+                <tr th:each="venta : ${ventas}">
+                    <td th:text="${venta.codigoVenta}">1</td>
+                    <td th:text="${#dates.format(venta.fechaVenta, 'dd/MM/yyyy HH:mm')}">2024-01-01</td>
+                    <td th:text="'Q' + ${venta.total}">Q100.00</td>
+                    <td th:text="${venta.cliente != null ? venta.cliente.nombreCliente + ' ' + venta.cliente.apellidoCliente : 'N/A'}">Cliente</td>
+                    <td th:text="${venta.usuario != null ? venta.usuario.username : 'N/A'}">Usuario</td>
                     <td>
+                        <span th:if="${venta.estado == 1}" class="badge active">Activo</span>
+                        <span th:if="${venta.estado == 0}" class="badge inactive">Inactivo</span>
                     </td>
                     <td class="actions">
+                        <a th:href="@{/ventas/editar/{codigo}(codigo=${venta.codigoVenta})}"
+                           class="btn-edit">✏️</a>
+                        <a th:href="@{/ventas/eliminar/{codigo}(codigo=${venta.codigoVenta})}"
+                           class="btn-delete"
+                           onclick="return confirm('¿Eliminar esta venta?')">🗑️</a>
+                        <a th:href="@{/detalleventas/venta/{codigo}(codigo=${venta.codigoVenta})}"
+                           class="btn-details">🔍</a>
                     </td>
+                </tr>
+                <tr th:if="${ventas == null or ventas.empty}">
+                    <td colspan="7" style="text-align:center">No hay ventas registradas</td>
                 </tr>
                 </tbody>
             </table>
